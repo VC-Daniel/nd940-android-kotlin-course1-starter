@@ -16,4 +16,9 @@
     </string>
     <string name="welcome_body">We are so happy to have you join our community! We are the one shop stop for everyone from the avid collector to the casual enthusiast. Check out our wide variety of shoes to match any occasion!</string>
     <string name="to_instructions_button">Let\'s Get Started</string>
+    <string name="instructions_header">Instructions</string>
+    <string name="view_shoes__instructions_text">View all of the shoes currently available in the shoe list screen. Here is were you can easily and quickly compare information about each shoe such as the name, manufacturer, and more!</string>
+    <string name="add_shoe_instructions_text">You can also easily add a new shoe to your list by clicking on the new shoe button.</string>
+    <string name="start_shopping_button">Start Shopping</string>
+    <string name="add_shoe_button">Add a new shoe</string>
 </resources>
