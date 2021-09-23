@@ -10,7 +10,7 @@
         android:fillViewport="true">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/welcomeHeaderText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/small_margin"
@@ -19,7 +19,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/welcomeMessageText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/large_margin"
@@ -29,7 +29,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/toInstructionsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
