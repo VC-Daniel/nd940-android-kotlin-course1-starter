@@ -32,4 +32,5 @@
     <string name="shoe_description_label">Description</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
+    <string name="logout">Logout</string>
 </resources>

@@ -50,5 +50,10 @@
         <action
             android:id="@+id/action_viewShoesFragment_to_addShoeFragment"
             app:destination="@id/addShoeFragment" />
+        <argument
+            android:name="shoe"
+            app:argType="com.udacity.shoestore.models.Shoe"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 </navigation>
