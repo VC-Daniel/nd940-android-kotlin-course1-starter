@@ -71,9 +71,9 @@ class ViewShoesFragment : Fragment() {
             shoeInfoText.text = String.format(
                 getString(R.string.shoe_info_format),
                 shoe.name,
+                shoe.size,
                 shoe.company,
-                shoe.description,
-                shoe.size
+                shoe.description
             )
 
             binding.shoeListLayout.addView(shoeInfoText,0)
