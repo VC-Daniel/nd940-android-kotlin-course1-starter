@@ -14,7 +14,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/newShoeActionButton"
                 android:layout_width="wrap_content"
@@ -23,7 +22,8 @@
                 android:clickable="true"
                 android:contentDescription="@string/add_shoe_button"
                 android:focusable="true"
-                android:src="@drawable/ic_add" />
+                android:src="@drawable/ic_add"
+                android:layout_margin="@dimen/small_margin"/>
         </LinearLayout>
     </ScrollView>
 
