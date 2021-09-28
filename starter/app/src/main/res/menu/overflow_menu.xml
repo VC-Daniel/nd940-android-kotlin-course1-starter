@@ -3,12 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/instructionsFragment"
-        android:icon="@android:drawable/ic_menu_info_details"
-        android:title="@string/instructions_header"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/LoginFragment"
+        android:id="@+id/loginFragment"
         android:icon="@android:drawable/ic_menu_set_as"
         android:title="@string/logout" />
 </menu>
