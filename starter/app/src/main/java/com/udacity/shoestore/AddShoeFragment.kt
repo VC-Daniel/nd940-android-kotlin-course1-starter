@@ -6,15 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.databinding.FragmentAddShoeBinding
+import com.udacity.shoestore.models.AddShoeViewModel
 import com.udacity.shoestore.models.Shoe
 
 
 class AddShoeFragment : Fragment() {
 
-    lateinit var binding: FragmentAddShoeBinding
-
+    private lateinit var binding: FragmentAddShoeBinding
+    private lateinit var viewModel: AddShoeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,33 +25,32 @@ class AddShoeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_shoe, container, false)
 
-        binding.cancelButton.setOnClickListener { v: View -> v.findNavController().popBackStack() }
+        viewModel = ViewModelProvider(this).get(AddShoeViewModel::class.java)
 
-        binding.saveButton.setOnClickListener { v: View ->
+        binding.addShoeViewModel = viewModel
 
-            val action = AddShoeFragmentDirections.actionAddShoeFragmentToViewShoesFragment()
-            action.shoe = createShoe()
+        binding.lifecycleOwner = this
 
-            v.findNavController()
-                .navigate(action)
+        viewModel.eventCancelCreate.observe(viewLifecycleOwner, { createCanceled ->
+            if (createCanceled) {
+                findNavController().popBackStack()
+                viewModel.onCancelCreateComplete()
+            }
         }
+        )
+
+        viewModel.eventSaveShoe.observe(viewLifecycleOwner, { createShoe ->
+            if (createShoe) {
+                val action = AddShoeFragmentDirections.actionAddShoeFragmentToViewShoesFragment()
+                action.shoe = viewModel.createShoe()
+
+                findNavController()
+                    .navigate(action)
+                viewModel.onSaveShoeComplete()
+            }
+        }
+        )
 
         return binding.root
     }
-
-    private fun createShoe(): Shoe {
-        val name = binding.nameEditText.text.toString()
-        val size: Double = try {
-            binding.sizeEditText.text.toString().toDouble()
-        } catch (ERROR: NumberFormatException) {
-            0.0
-        }
-
-        val company = binding.companyEditText.text.toString()
-        val description = binding.descriptionEditText.text.toString()
-
-        return Shoe(name, size, company, description)
-
-    }
-
 }
