@@ -2,7 +2,6 @@ package com.udacity.shoestore
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -23,6 +22,19 @@ class ViewShoesFragment : Fragment() {
     private lateinit var viewModel: ShoeViewModel
     lateinit var binding: FragmentViewShoesBinding
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        viewModel = ViewModelProvider(this).get(ShoeViewModel::class.java)
+
+        val viewShoesFragmentArgs by navArgs<ViewShoesFragmentArgs>()
+
+        if (viewShoesFragmentArgs.shoe != null) {
+            viewModel.addShoe(viewShoesFragmentArgs.shoe!!)
+        }
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,19 +48,11 @@ class ViewShoesFragment : Fragment() {
                 .navigate(ViewShoesFragmentDirections.actionViewShoesFragmentToAddShoeFragment())
         }
 
-        viewModel = ViewModelProvider(this).get(ShoeViewModel::class.java)
-
         // Specify the current activity as the lifecycle owner of the binding. This is used so that
         // the binding can observe LiveData updates
         binding.setLifecycleOwner(this)
 
         viewModel.shoeList.observe(viewLifecycleOwner, Observer { shoes -> displayShoes(shoes) })
-
-        val viewShoesFragmentArgs by navArgs<ViewShoesFragmentArgs>()
-
-        if (viewShoesFragmentArgs.shoe != null) {
-            viewModel.addShoe(viewShoesFragmentArgs.shoe!!)
-        }
 
         return binding.root
     }
@@ -77,7 +81,7 @@ class ViewShoesFragment : Fragment() {
                 shoe.description
             )
 
-            binding.shoeListLayout.addView(shoeInfoText,0)
+            binding.shoeListLayout.addView(shoeInfoText, 0)
         }
     }
 
