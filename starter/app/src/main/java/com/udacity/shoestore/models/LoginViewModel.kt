@@ -3,14 +3,11 @@ package com.udacity.shoestore.models
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import timber.log.Timber
 
 class LoginViewModel : ViewModel() {
 
-
-
-     val email = MutableLiveData<String>()
-     val password = MutableLiveData<String>()
+    val email = MutableLiveData<String>()
+    val password = MutableLiveData<String>()
 
     // Event which signifies a new account has been created successfully
     private val _eventCreatedAccount = MutableLiveData<Boolean>()
@@ -47,8 +44,7 @@ class LoginViewModel : ViewModel() {
         _eventLoginSelected.value = false
     }
 
-    private fun clearNewAccountInput()
-    {
+    private fun clearNewAccountInput() {
         email.value = ""
         password.value = ""
     }
