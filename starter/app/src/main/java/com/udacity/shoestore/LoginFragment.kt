@@ -1,14 +1,19 @@
 package com.udacity.shoestore
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.databinding.FragmentLoginBinding
+import com.udacity.shoestore.models.LoginViewModel
 
 class LoginFragment : Fragment() {
+
+    private lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -18,8 +23,27 @@ class LoginFragment : Fragment() {
         val binding: FragmentLoginBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
 
-        binding.createAccountButton.setOnClickListener {v:View -> v.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())}
-        binding.loginButton.setOnClickListener {v:View -> v.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())}
+        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+
+        binding.loginViewModel = viewModel
+
+        binding.lifecycleOwner = this
+
+        viewModel.eventCreatedAccount.observe(viewLifecycleOwner, { accountCreated ->
+            if (accountCreated) {
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
+                viewModel.onAccountCreatedComplete()
+            }
+        }
+        )
+
+        viewModel.eventLoginSelected.observe(viewLifecycleOwner, { loginSelected ->
+            if (loginSelected) {
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
+                viewModel.onLoginSelectedComplete()
+            }
+        }
+        )
 
         return binding.root
     }
