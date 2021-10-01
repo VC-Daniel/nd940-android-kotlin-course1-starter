@@ -1,9 +1,7 @@
 package com.udacity.shoestore
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
@@ -29,12 +27,17 @@ class ViewShoesFragment : Fragment() {
 
         val viewShoesFragmentArgs by navArgs<ViewShoesFragmentArgs>()
 
+        setHasOptionsMenu(true)
+
         if (viewShoesFragmentArgs.shoe != null) {
             viewModel.addShoe(viewShoesFragmentArgs.shoe!!)
         }
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.overflow_menu, menu)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
