@@ -4,17 +4,29 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
+/** Allows the user to view all the available shoes including shoes they added. */
 class ShoeViewModel : ViewModel() {
 
     private val _shoeList = MutableLiveData<MutableList<Shoe>>()
 
+    private val _eventCreateShoe = MutableLiveData<Boolean>()
+
+    /** Event which signifies the user wants to create a new shoe. */
+    val eventCreateShoe: LiveData<Boolean>
+        get() = _eventCreateShoe
+
+    /** All shoes in the shore store including any the user has added */
     val shoeList: LiveData<MutableList<Shoe>>
         get() = _shoeList
 
     init {
+        _eventCreateShoe.value = false
+
+        // Get the pre-existing shoes in the shoe store
         initializeShoeList()
     }
 
+    /** Populate the shoe list with the default shoes */
     private fun initializeShoeList() {
 
         val brand1 = "Nikae"
@@ -34,9 +46,19 @@ class ShoeViewModel : ViewModel() {
         )
     }
 
+    /** Add a user created shoe to the shore store */
     fun addShoe(newShoe: Shoe) {
         _shoeList.value?.add(newShoe)
+    }
 
+    /** Triggered when the user wants to create a new shoe. */
+    fun onCreateShoe() {
+        _eventCreateShoe.value = true
+    }
+
+    /** Indicate the user has been presented with the option to create a new shoe */
+    fun onCreateShoeComplete() {
+        _eventCreateShoe.value = false
     }
 
 }
