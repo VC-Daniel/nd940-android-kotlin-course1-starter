@@ -38,8 +38,8 @@
             android:id="@+id/continueButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/start_shopping_button"
+            android:layout_gravity="center"
             android:layout_marginTop="@dimen/large_margin"
-            android:layout_gravity="center"/>
+            android:text="@string/start_shopping_button" />
     </LinearLayout>
 </layout>

@@ -11,7 +11,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_marginStart="@dimen/large_margin"
         android:layout_marginTop="@dimen/small_margin"
         android:layout_marginEnd="@dimen/large_margin"
@@ -71,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:hint="@string/manufacturer_name_hint"
-                    android:text="@={addShoeViewModel.company}" />/>
+                    android:text="@={addShoeViewModel.company}" />
             </TableRow>
 
             <TableRow
@@ -94,7 +93,7 @@
                     android:layout_weight="2"
                     android:hint="@string/shoe_size_label"
                     android:inputType="numberDecimal"
-                    android:text="@={addShoeViewModel.size}" />/>
+                    android:text="@={addShoeViewModel.size}" />
 
             </TableRow>
 
@@ -117,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:hint="@string/shoe_description_hint"
-                    android:text="@={addShoeViewModel.description}" />/>
+                    android:text="@={addShoeViewModel.description}" />
 
             </TableRow>
         </TableLayout>
@@ -144,8 +143,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/small_margin"
                 android:layout_weight="1"
-                android:text="@string/save"
-                android:onClick="@{() ->addShoeViewModel.onSaveShoe()}"/>
+                android:onClick="@{() ->addShoeViewModel.onSaveShoe()}"
+                android:text="@string/save" />
         </LinearLayout>
     </LinearLayout>
 </layout>

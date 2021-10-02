@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.databinding.FragmentLoginBinding
 import com.udacity.shoestore.models.LoginViewModel
 
+/** Facilitates logging into or creating a new account */
 class LoginFragment : Fragment() {
 
     private lateinit var viewModel: LoginViewModel
@@ -19,16 +20,17 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val binding: FragmentLoginBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
 
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
+        // Inflate the layout for this fragment using data binding and connect the view model
+        // that handles the logic with the UI
+        val binding: FragmentLoginBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
         binding.loginViewModel = viewModel
-
         binding.lifecycleOwner = this
 
+        // When the user has created a new account navigate to the welcome destination
         viewModel.eventCreatedAccount.observe(viewLifecycleOwner, { accountCreated ->
             if (accountCreated) {
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
@@ -37,6 +39,7 @@ class LoginFragment : Fragment() {
         }
         )
 
+        // When the user logs in with an existing account navigate to the welcome destination
         viewModel.eventLoginSelected.observe(viewLifecycleOwner, { loginSelected ->
             if (loginSelected) {
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())

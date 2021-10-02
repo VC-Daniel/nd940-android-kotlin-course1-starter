@@ -9,6 +9,7 @@ import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.databinding.ActivityMainBinding
 import timber.log.Timber
 
+/** Hold the fragments that allow the user to use the main functionality of the app. */
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,13 +18,14 @@ class MainActivity : AppCompatActivity() {
             DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         Timber.plant(Timber.DebugTree())
 
+        // Use a action bar to facilitate navigation within the app such as logging out
         setSupportActionBar(binding.toolbar)
-
         val navController = this.findNavController(R.id.myNavHostFragment)
         NavigationUI.setupActionBarWithNavController(this, navController)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle the options menu items being selected such as logging out
         return NavigationUI.onNavDestinationSelected(
             item,
             findNavController(R.id.myNavHostFragment)

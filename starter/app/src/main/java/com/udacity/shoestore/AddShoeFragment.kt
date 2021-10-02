@@ -10,9 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.databinding.FragmentAddShoeBinding
 import com.udacity.shoestore.models.AddShoeViewModel
-import com.udacity.shoestore.models.Shoe
 
-
+/** Allows the user to add a new shoe to the shoe list */
 class AddShoeFragment : Fragment() {
 
     private lateinit var binding: FragmentAddShoeBinding
@@ -22,15 +21,16 @@ class AddShoeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_shoe, container, false)
 
         viewModel = ViewModelProvider(this).get(AddShoeViewModel::class.java)
 
+        // Inflate the layout for this fragment using data binding and connect the view model
+        // that handles the logic with the UI
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_shoe, container, false)
         binding.addShoeViewModel = viewModel
-
         binding.lifecycleOwner = this
 
+        // Return to the shoe list if the user no longer wants to add a shoe
         viewModel.eventCancelCreate.observe(viewLifecycleOwner, { createCanceled ->
             if (createCanceled) {
                 findNavController().popBackStack()
@@ -39,6 +39,7 @@ class AddShoeFragment : Fragment() {
         }
         )
 
+        // Save a new shoe and then return to the shoe list
         viewModel.eventSaveShoe.observe(viewLifecycleOwner, { createShoe ->
             if (createShoe) {
                 val action = AddShoeFragmentDirections.actionAddShoeFragmentToViewShoesFragment()
