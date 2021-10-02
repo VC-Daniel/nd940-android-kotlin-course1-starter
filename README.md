@@ -16,13 +16,8 @@ This section should contain all the student deliverables for this project.
 
 ## Built With
 
-android.arch.navigation:navigation-fragment
-Androidx.databinding:databinding-runtime:
-
 * [Timber](https://github.com/JakeWharton/timber) - Timber is used for logging.
 * [AndroidX Navigation](https://developer.android.com/reference/androidx/navigation/package-summary) - Facilitates navigating between fragments in the app.
 * [Androidx Databinding](https://developer.android.com/reference/android/databinding/package-summary) - Allows for data binding to simplify UI logic and for improved encapsulation within the code.
-
-Include all items used to build project.
 
 ## License
